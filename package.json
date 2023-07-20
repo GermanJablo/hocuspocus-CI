@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "y-websocket": "^1.5.0",
+    "yjs": "^13.6.7"
   }
 }
