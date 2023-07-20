@@ -1,5 +1,4 @@
 import * as Y from "yjs";
-import * as YWebsocket from "y-websocket";
 import { HocuspocusProvider } from "@hocuspocus/provider";
 
 const ydoc = new Y.Doc();
@@ -15,13 +14,6 @@ function updateCounter() {
 ycounter.observe(updateCounter);
 updateCounter(); // Update the counter on the page initially
 
-// Connect to the y-websocket server
-// new YWebsocket.WebsocketProvider(
-//   "ws://localhost:1234",
-//   "",
-//   ydoc
-// );
-
 new HocuspocusProvider({
   url: "ws://localhost:80",
   name: "hocuspocus-CI-provider",
@@ -34,5 +26,17 @@ const incrementBtn = document.getElementById("incrementBtn");
 incrementBtn.addEventListener("click", () => {
   ydoc.transact(() => {
     ycounter.push([1]); // Increment the counter by 1
+  });
+});
+
+// Reset the counter to 0 in response to a click on the reset button
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", () => {
+  ydoc.transact(() => {
+    // Clear the Yjs array to reset the counter to 0
+    while (ycounter.length > 0) {
+      ycounter.delete(0);
+    }
+    ycounter.push([]); // Create a new element to reset the array
   });
 });
