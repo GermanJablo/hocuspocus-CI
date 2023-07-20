@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page, browser }) => {
-  await page.goto('http://localhost:5173');
+test('test', async ({ page, browser }) => {
+  await page.goto('http://localhost:3000');
   const context = await browser.newContext();
   const page2 = await context.newPage();
-  await page2.goto('http://localhost:5173');
-  await page.goto('http://localhost:5173/');
+  await page2.goto('http://localhost:3000');
+  await page.goto('http://localhost:3000/');
   await page.getByRole('button', { name: 'Reset counter' }).click();
   await page.getByRole('button', { name: 'Increment Counter' }).click();
   await page.getByRole('button', { name: 'Increment Counter' }).click();
