@@ -1,5 +1,6 @@
 import * as Y from "yjs";
 import * as YWebsocket from "y-websocket";
+import { HocuspocusProvider } from "@hocuspocus/provider";
 
 const ydoc = new Y.Doc();
 const ycounter = ydoc.getArray("counter");
@@ -15,11 +16,18 @@ ycounter.observe(updateCounter);
 updateCounter(); // Update the counter on the page initially
 
 // Connect to the y-websocket server
-new YWebsocket.WebsocketProvider(
-  "ws://localhost:1234",
-  "",
-  ydoc
-);
+// new YWebsocket.WebsocketProvider(
+//   "ws://localhost:1234",
+//   "",
+//   ydoc
+// );
+
+new HocuspocusProvider({
+  url: "ws://localhost:80",
+  name: "hocuspocus-CI-provider",
+  // token: "",
+  document: ydoc,
+});
 
 // Increment the counter in response to a click on the button
 const incrementBtn = document.getElementById("incrementBtn");
