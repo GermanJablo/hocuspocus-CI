@@ -15,7 +15,7 @@ ycounter.observe(updateCounter);
 updateCounter(); // Update the counter on the page initially
 
 new HocuspocusProvider({
-  url: "ws://localhost:80",
+  url: "ws://localhost:8000",
   name: "hocuspocus-CI-provider",
   // token: "",
   document: ydoc,
